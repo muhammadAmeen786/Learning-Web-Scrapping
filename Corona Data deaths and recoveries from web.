@@ -1,0 +1,28 @@
+// in this project i used the worldometers website to get the exact no. of data of the deaths and recoveris and total corona cases.
+// we learnt how tho use the cheerio module  and hwo to use the request module to do the task.
+
+let path = require('path');
+let fs = require('fs');
+ const cheerio = require('cheerio');
+
+ const req = require('request');
+const { getEnvironmentData } = require('worker_threads');
+req('https://www.worldometers.info/coronavirus/', cb);
+function cb(err,res,body){ // body hum ko sara html dedeta hai.
+                            // res humko poora server sey aaney waleee chez bata detii hai.
+        if(err){
+            console.log('something is wrong');
+        }   
+        else{
+            let seltool = cheerio.load(body);
+
+          
+            let cases = seltool(".maincounter-number");
+            console.log(` Total corona cases: ${seltool(cases[0]).text()}
+                          Total Deaths: ${seltool(cases[1]).text()}
+                          Recovered People: ${seltool(cases[2]).text()}`);
+      
+        }               // aur errors tell us about errors.
+    
+    
+}

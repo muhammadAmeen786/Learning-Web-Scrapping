@@ -1,0 +1,14 @@
+let c = require('cheerio'); // cheerio module helps us to parse the html that we get from the html.
+
+let html = `
+<ul id="fruits">
+  <li class="apple">Apple</li>
+  <li class="orange">Orange</li>
+  <li class="pear">Pear</li>
+</ul>
+
+`
+let selTool = c.load(html);// this will load the above html as a tree like structure. and it provides us various methods to get the data we want.
+
+let arr = selTool("#fruits");  //
+console.log(arr.text()); //like here we can print the text of the variabel arr which will print Apple Orange and pear.
